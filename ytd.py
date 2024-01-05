@@ -1,4 +1,5 @@
 from pytube import YouTube, Playlist
+from pytube.exceptions import VideoUnavailable
 from os import rename
 def baixar(link):
     global ext
@@ -27,5 +28,22 @@ def baixar(link):
         else:
             print('Resposta inválida, tente novamente')
             ext = input('Selecione como deseja baixar\n[1]Resolução mais alta\n[2]Resolução mais baixa\n[3]Apenas áudio\n -> ')
-    except:
+    except VideoUnavailable:
         print('Vídeo indisponível :( ')
+        
+
+link = input('Digite o link: ')
+if link.count('playlist') == 1:
+    link = Playlist(link)
+    ext = input('Selecione como deseja baixar\n[1]Resolução mais alta\n[2]Resolução mais baixa\n[3]Apenas áudio\n -> ') 
+    for video in link.videos:
+        baixar(video)
+else:
+    link=YouTube(link)
+    ext = input('Selecione como deseja baixar\n[1]Resolução mais alta\n[2]Resolução mais baixa\n[3]Apenas áudio\n -> ') 
+    baixar(link)
+
+
+
+
+
