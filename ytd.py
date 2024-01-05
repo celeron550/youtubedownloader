@@ -19,7 +19,6 @@ def baixar(link):
             nome_arquivo = str(link.title).replace(".","")
             nome_arquivo = nome_arquivo.replace(",","")
             nome_arquivo = nome_arquivo.replace("/","")
-            nome_arquivo = nome_arquivo.replace("-","")
             nome_arquivo = nome_arquivo.replace("'","")
             titulo = str(link.title).replace("/","")
             file_path = f'./downloads/{nome_arquivo}.mp4'
